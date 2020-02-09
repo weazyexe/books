@@ -1,5 +1,7 @@
 package exe.weazy
 
+import kotlin.random.Random
+
 class Algorithms {
     fun binarySearch(collection: List<Int>, searched: Int) : Int? {
         var high = collection.size - 1
@@ -79,6 +81,27 @@ class Algorithms {
         }
 
         return recursionBinarySearch(collection, searched, low, mid - 1)
+    }
+
+    fun quickSort(collection: MutableList<Int>) : MutableList<Int> {
+        if (collection.size < 2) {
+            return collection
+        }
+
+        if (collection.size == 2) {
+            if (collection[0] <= collection[1]) {
+                return collection
+            }
+
+            return mutableListOf(collection[1], collection[0])
+        }
+
+        val pivot = collection[Random.nextInt(0, collection.size - 1)]
+
+        val less = collection.filter { it < pivot } as MutableList
+        val greater = collection.filter { it > pivot } as MutableList
+
+        return (quickSort(less) + mutableListOf(pivot) + quickSort(greater)) as MutableList
     }
 
     private fun findMin(array: List<Int>) : Int {
