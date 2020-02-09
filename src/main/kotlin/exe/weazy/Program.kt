@@ -1,8 +1,8 @@
 package exe.weazy
 
-fun main() {
-    val algorithms = Algorithms()
+import exe.weazy.extensions.*
 
+fun main() {
     while (true) {
         menu()
 
@@ -12,39 +12,39 @@ fun main() {
             }
             "1" -> {
                 val collection = (1..50).toMutableList()
-                println(">> in array $collection find index of 9: ${algorithms.binarySearch(collection, 9)}")
+                println(">> in array $collection find index of 9: ${collection.binarySearch(9)}")
             }
             "2" -> {
-                val collection = (1..15).shuffled() as MutableList
+                val collection = (1..15).shuffled()
                 println(">> collection")
                 println(">> $collection")
                 println(">> sorted")
-                println(">> ${algorithms.selectionSort(collection)}")
+                println(">> ${collection.selectionSort()}")
             }
             "3" -> {
                 val collection = (1..100).toMutableList()
-                print(">> sum from 1 to 100 = ${algorithms.recursionSum(collection)}")
+                print(">> sum from 1 to 100 = ${collection.recursionSum()}")
             }
             "4" -> {
                 val collection = (1..100).toMutableList()
-                print(">> collection size = ${algorithms.collectionSize(collection)}")
+                print(">> collection size = ${collection.recursionSize()}")
             }
             "5" -> {
                 val collection = mutableListOf(6, 2, 6, 91, 3, 0, -42, 5, 1, 543, 23, 612, 82, 1)
                 println(">> in collection")
                 println(">> $collection")
-                println(">> max is ${algorithms.recursionFindMax(collection, collection.first(), 0)}")
+                println(">> max is ${collection.recursionFindMax(collection.first(), 0)}")
             }
             "6" -> {
                 val collection = (0..15).toMutableList()
-                println(">> in array $collection find index of 9: ${algorithms.recursionBinarySearch(collection, 9, 0, collection.size - 1)}")
+                println(">> in array $collection find index of 9: ${collection.recursionBinarySearch(9, 0, collection.size - 1)}")
             }
             "7" -> {
                 val collection = (1..15).shuffled() as MutableList
                 println(">> collection")
                 println(">> $collection")
                 println(">> sorted")
-                println(">> ${algorithms.quickSort(collection)}")
+                println(">> ${collection.quickSort()}")
             }
         }
 
