@@ -1,6 +1,7 @@
 package exe.weazy
 
 import exe.weazy.extensions.*
+import exe.weazy.structures.Graph
 
 fun main() {
     while (true) {
@@ -46,6 +47,25 @@ fun main() {
                 println(">> sorted")
                 println(">> ${collection.quickSort()}")
             }
+            "8" -> {
+                val graph = Graph()
+
+                graph.add("Me", listOf("John", "Peggy", "Samantha"))
+                graph.add("John", listOf("Elizabeth", "Alexander", "Christopher"))
+                graph.add("Peggy", listOf("Barry", "Norton", "Nicholas"))
+                graph.add("Samantha", listOf("Harry"))
+                graph.add("Elizabeth", listOf("Samantha", "Barry"))
+                graph.add("Alexander", listOf())
+                graph.add("Christopher", listOf("John", "Samantha", "Me"))
+                graph.add("Barry", listOf())
+                graph.add("Norton", listOf("Me"))
+                graph.add("Nicholas", listOf("Samantha"))
+                graph.add("Harry", listOf("Samantha", "Elizabeth"))
+
+                println("lets find Samantha: ${graph.find("Samantha", "Me")}")
+                println("lets find Norton: ${graph.find("Norton", "Me")}")
+                println("lets find Thomas: ${graph.find("Thomas", "Me")}")
+            }
         }
 
         println('\n')
@@ -62,4 +82,5 @@ fun menu() {
     println("5. recursion find max in collection")
     println("6. recursion binary search")
     println("7. quick sort")
+    println("8. bfs")
 }
