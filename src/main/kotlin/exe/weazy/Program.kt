@@ -48,23 +48,22 @@ fun main() {
                 println(">> ${collection.quickSort()}")
             }
             "8" -> {
-                val graph = Graph()
-
-                graph.add("Me", listOf("John", "Peggy", "Samantha"))
-                graph.add("John", listOf("Elizabeth", "Alexander", "Christopher"))
-                graph.add("Peggy", listOf("Barry", "Norton", "Nicholas"))
-                graph.add("Samantha", listOf("Harry"))
-                graph.add("Elizabeth", listOf("Samantha", "Barry"))
-                graph.add("Alexander", listOf())
-                graph.add("Christopher", listOf("John", "Samantha", "Me"))
-                graph.add("Barry", listOf())
-                graph.add("Norton", listOf("Me"))
-                graph.add("Nicholas", listOf("Samantha"))
-                graph.add("Harry", listOf("Samantha", "Elizabeth"))
+                val graph = makeGraph()
 
                 println("lets find Samantha: ${graph.find("Samantha", "Me")}")
                 println("lets find Norton: ${graph.find("Norton", "Me")}")
                 println("lets find Thomas: ${graph.find("Thomas", "Me")}")
+            }
+            "9" -> {
+                val graph = makeGraphFromBook()
+
+                println("min distance from start to final: ${graph.minDistance("Start", "Final")}")
+            }
+            "10" -> {
+                val graph = makeGraph()
+
+                println("min distance from Me to Christopher: ${graph.minDistance("Me", "Christopher")}")
+                println("min distance from Me to Norton: ${graph.minDistance("Me", "Norton")}")
             }
         }
 
@@ -83,4 +82,30 @@ fun menu() {
     println("6. recursion binary search")
     println("7. quick sort")
     println("8. bfs")
+    println("9. dijkstra (example from the book)")
+    println("10. dijkstra (my example)")
+}
+
+fun makeGraph() : Graph<String> {
+    val graph = Graph<String>()
+
+    graph.add("Me", mapOf("John" to 5, "Peggy" to 7, "Samantha" to 9))
+    graph.add("John", mapOf("Christopher" to 3))
+    graph.add("Peggy", mapOf("Norton" to 5))
+    graph.add("Samantha", mapOf("Norton" to 8, "Christopher" to 5))
+    graph.add("Christopher", mapOf())
+    graph.add("Norton", mapOf())
+
+    return graph
+}
+
+fun makeGraphFromBook() : Graph<String> {
+    val graph = Graph<String>()
+
+    graph.add("Start", mapOf("A" to 6, "B" to 2))
+    graph.add("A", mapOf("Final" to 1))
+    graph.add("B", mapOf("A" to 3, "Final" to 5))
+    graph.add("Final", mapOf())
+
+    return graph
 }
