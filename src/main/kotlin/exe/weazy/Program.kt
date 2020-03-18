@@ -2,6 +2,7 @@ package exe.weazy
 
 import exe.weazy.extensions.*
 import exe.weazy.structures.Graph
+import exe.weazy.structures.HashTable
 
 fun main() {
     while (true) {
@@ -65,6 +66,21 @@ fun main() {
                 println("min distance from Me to Christopher: ${graph.minDistance("Me", "Christopher")}")
                 println("min distance from Me to Norton: ${graph.minDistance("Me", "Norton")}")
             }
+            "11" -> {
+                val ht = makeHashTable()
+                ht.printAll()
+
+                println("\nget avocado: ${ht.get("Avocado")}")
+                println("get apple: ${ht.get("Apple")}")
+                println("get mango (not exists): ${ht.get("Mango")}")
+
+                ht.remove("Kiwi")
+                ht.set("Orange", 300)
+                ht.size = 100
+
+                println("\nnow remove kiwi, change size from default to 100, orange = 300:")
+                ht.printAll()
+            }
         }
 
         println('\n')
@@ -84,6 +100,7 @@ fun menu() {
     println("8. bfs")
     println("9. dijkstra (example from the book)")
     println("10. dijkstra (my example)")
+    println("11. hash table example")
 }
 
 fun makeGraph() : Graph<String> {
@@ -108,4 +125,21 @@ fun makeGraphFromBook() : Graph<String> {
     graph.add("Final", mapOf())
 
     return graph
+}
+
+fun makeHashTable() : HashTable<String, Int> {
+    val ht = HashTable<String, Int>()
+
+    ht.set("Orange", 30)
+    ht.set("Apple", 50)
+    ht.set("Kiwi", 100)
+    ht.set("Banana", 20)
+    ht.set("Cucumber", 60)
+    ht.set("Tomato", 70)
+    ht.set("Grape", 130)
+    ht.set("Potato", 10)
+    ht.set("Avocado", 90)
+    ht.set("Corn", 60)
+
+    return ht
 }
